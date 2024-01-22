@@ -10,7 +10,7 @@ uint   versionSafeRetries = 0;
 
 bool GameVersionSafe() {
     string[] knownGood = {
-        "2023-11-15_11_56",
+        "2023-11-15_11_56",  // released 2023-11-21
         "2024-01-10_12_53"   // released 2024-01-10
     };
 
