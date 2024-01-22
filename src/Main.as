@@ -16,8 +16,7 @@ void Main() {
         if (S_Enabled && versionSafe) {
             CGameControlCameraFree@ Cam = GetFreeCamControls(GetApp());
             if (Cam !is null && Cam.m_MoveSpeed > S_Limit)
-                // Cam.m_MoveSpeed = S_Limit;
-                print(tostring(Cam.m_MoveSpeed));
+                Cam.m_MoveSpeed = S_Limit;
         }
 
         yield();
