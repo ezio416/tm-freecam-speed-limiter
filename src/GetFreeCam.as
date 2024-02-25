@@ -18,7 +18,9 @@ uint16 GetMemberOffset(const string &in className, const string &in memberName) 
     return member.Offset;
 }
 
-CGameControlCameraFree@ GetFreeCamControls(CGameCtnApp@ App) {
+CGameControlCameraFree@ GetFreeCamControls() {
+    CTrackMania@ App = cast<CTrackMania@>(GetApp());
+
     if (App is null || App.GameScene is null || App.CurrentPlayground is null)
         return null;
 
