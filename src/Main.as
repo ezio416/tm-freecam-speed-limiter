@@ -1,32 +1,38 @@
 // c 2024-01-22
 // m 2024-02-25
 
-const string title = "\\$FA0" + Icons::Kenney::Forward + "\\$G FreeCam Speed Limiter";
+bool         overrideKey = false;
+const string title       = "\\$FA0" + Icons::Kenney::Forward + "\\$G FreeCam Speed Limiter";
 
 void Main() {
     versionSafe = GameVersionSafe();
     S_OverrideCheck = false;
 
     while (true) {
+        yield();
+
         if (S_Enabled && versionSafe) {
             CGameControlCameraFree@ Cam = GetFreeCamControls();
 
-            if (Cam !is null) {
-                if (Cam.m_MoveSpeed < S_MinLimit)
-                    Cam.m_MoveSpeed = S_MinLimit;
+            if (overrideKey || Cam is null)
+                continue;
 
-                if (Cam.m_MoveSpeed > S_MaxLimit)
-                    Cam.m_MoveSpeed = S_MaxLimit;
-            }
+            if (Cam.m_MoveSpeed < S_MinLimit)
+                Cam.m_MoveSpeed = S_MinLimit;
+
+            if (Cam.m_MoveSpeed > S_MaxLimit)
+                Cam.m_MoveSpeed = S_MaxLimit;
         }
-
-        yield();
     }
 }
 
 void RenderMenu() {
     if (UI::MenuItem(title + (versionSafe ? "" : "\\$AAA (disabled" + (checkingApi ? ", checking..." : "") + ")"), "", S_Enabled, versionSafe))
         S_Enabled = !S_Enabled;
+}
+
+void OnKeyPress(bool down, VirtualKey key) {
+    overrideKey = down && key == S_Key;
 }
 
 void OnSettingsChanged() {
