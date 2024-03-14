@@ -8,3 +8,5 @@ The name should be pretty self-explanatory. When using FreeCam (Cam 7) and holdi
 
 <!-- ![Game Maniaplanet](https://img.shields.io/badge/Game-Maniaplanet_4-blue) -->
 <!-- ![Game Turbo](https://img.shields.io/badge/Game-Turbo-blue) -->
+
+![image](images/freecam-speed-limiter.png)
